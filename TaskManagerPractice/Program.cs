@@ -1,3 +1,5 @@
+using TaskManagerPractice.Models;
+
 namespace TaskManagerPractice
 {
     public class Program
@@ -8,6 +10,7 @@ namespace TaskManagerPractice
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<TasksDb>();
 
             var app = builder.Build();
 
