@@ -24,11 +24,11 @@
                 <td>@task.TaskName</td>
                 <td>@task.TaskDescription</td>
                 <td>@task.DeadlineDate.ToShortDateString()</td>
-                <td>(@task.WasCompleted?"Yes":"No")</td>
+                <td>@task.WasCompleted</td>
             </tr>
             }
         </tbody>
     </table>
-    <a asp-action="CreateNewTask" class="btn-dark">New Task</a>
+    <a asp-action="CreateNewTask" class="btn btn-secondary">New Task</a>
 </div>
 

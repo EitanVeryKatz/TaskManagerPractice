@@ -7,11 +7,11 @@ namespace TaskManagerPractice.Controllers
 {
     public class HomeController : Controller
     {
-        
+
         readonly TasksDb _context;
 
         private readonly ILogger<HomeController> _logger;
-        
+
         public HomeController(ILogger<HomeController> logger, TasksDb context)
         {
             _context = context;
@@ -37,6 +37,14 @@ namespace TaskManagerPractice.Controllers
         public IActionResult CreateNewTask()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateNewTaskFormSubmit(TaskItem i_task) 
+        {
+            _context.Tasks.Add(i_task);
+            _context.SaveChanges();
+            return RedirectToAction("MyTasks");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
