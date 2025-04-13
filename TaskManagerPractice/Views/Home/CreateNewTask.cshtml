@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Create Task";
+}
+
+@model TaskItem
+
+
+
+<div class="text-center">
+    <h1 class="display-4">Create new task</h1>
+    <form asp-action="CreateNewTaskFormSubmit" method="post">
+        <label>Task Name</label>
+        <input  asp-for="TaskName" class=" form-text" placeholder="Task Name">
+        <label>Task Description</label>
+        <textarea asp-for="TaskDescription" class="form-text" placeholder="Task Description..."></textarea>
+        <label>Date for Complition</label>
+        <input asp-for="DeadlineDate" type ="date" />
+        <button type ="submit" class=" btn btn-secondary">Create Task</button>
+    </form>
+</div>

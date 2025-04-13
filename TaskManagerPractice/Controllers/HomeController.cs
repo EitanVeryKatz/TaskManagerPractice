@@ -2,14 +2,19 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TaskManagerPractice.Models;
 
+
 namespace TaskManagerPractice.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        
+        readonly TasksDb _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ILogger<HomeController> _logger;
+        
+        public HomeController(ILogger<HomeController> logger, TasksDb context)
         {
+            _context = context;
             _logger = logger;
         }
 
@@ -18,7 +23,18 @@ namespace TaskManagerPractice.Controllers
             return View();
         }
 
+        public IActionResult MyTasks()
+        {
+            List<TaskItem> AllTasks = _context.Tasks.ToList();
+            return View(AllTasks);
+        }
+
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult CreateNewTask()
         {
             return View();
         }
