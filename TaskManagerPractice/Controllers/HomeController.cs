@@ -56,6 +56,24 @@ namespace TaskManagerPractice.Controllers
             return RedirectToAction("MyTasks");
         }
 
+        public IActionResult ClearAllTasks()
+        {
+            foreach (var item in _context.Tasks)
+            {
+                _context.Tasks.Remove(item);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteTask(int Id)
+        {
+            var task = _context.Tasks.FirstOrDefault(task=>task.Id == Id);
+            _context.Tasks.Remove(task);
+            _context.SaveChanges();
+            return RedirectToAction("MyTasks");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

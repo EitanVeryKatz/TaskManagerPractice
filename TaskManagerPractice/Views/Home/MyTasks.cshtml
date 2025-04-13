@@ -25,10 +25,18 @@
                 <td>@task.TaskDescription</td>
                 <td>@task.DeadlineDate.ToShortDateString()</td>
                 <td>@task.WasCompleted</td>
+                <td>
+                    <form asp-action="DeleteTask">
+                        <button type="submit" class="btn btn-primary">Delete task</button>
+                    </form>
+                </td>
+                
             </tr>
+            
             }
         </tbody>
     </table>
+    <a asp-action="ClearAllTasks" class="btn btn-secondary">ClearAllTasks</a>
     <a asp-action="CreateNewTask" class="btn btn-secondary">New Task</a>
 </div>
 

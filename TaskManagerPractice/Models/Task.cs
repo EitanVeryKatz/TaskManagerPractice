@@ -4,6 +4,7 @@ namespace TaskManagerPractice.Models
 {
     public class TaskItem
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
