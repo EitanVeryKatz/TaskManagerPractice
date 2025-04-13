@@ -74,6 +74,15 @@ namespace TaskManagerPractice.Controllers
             return RedirectToAction("MyTasks");
         }
 
+        public IActionResult ChangeTaskComplitionStatus(int Id)
+        {
+            var task = _context.Tasks.FirstOrDefault(task => task.Id == Id);
+            task.WasCompleted = !task.WasCompleted;
+            _context.Tasks.Update(task);
+            _context.SaveChanges();
+            return RedirectToAction("MyTasks");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

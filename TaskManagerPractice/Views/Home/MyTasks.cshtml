@@ -24,9 +24,16 @@
                 <td>@task.TaskName</td>
                 <td>@task.TaskDescription</td>
                 <td>@task.DeadlineDate.ToShortDateString()</td>
-                <td>@task.WasCompleted</td>
+                <td>@task.WasCompleted 
+                    <form asp-action="ChangeTaskComplitionStatus" method="post">
+                            <input type="hidden" name="Id" value="@task.Id" />
+                            <input type ="checkbox" onchange="this.form.submit()" name="Was completed" />
+
+                    </form>
+                </td>
                 <td>
-                    <form asp-action="DeleteTask">
+                    <form asp-action="DeleteTask" method="post">
+                        <input type="hidden" name="Id" value="@task.Id" />
                         <button type="submit" class="btn btn-primary">Delete task</button>
                     </form>
                 </td>
