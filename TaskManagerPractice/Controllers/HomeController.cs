@@ -63,9 +63,19 @@ namespace TaskManagerPractice.Controllers
             return View();
         }
 
-        public IActionResult CreateNewTask()
+        public IActionResult EditOrCreateNewTask(int Id)
         {
-            return View();
+            TaskItem task;
+            if(Id== 0)
+            {
+                task = new TaskItem();
+            }
+            else
+            {
+                task = _context.Tasks.SingleOrDefault(task => task.Id == Id);
+
+            }
+            return View(task);
         }
 
         [HttpPost]
@@ -78,10 +88,17 @@ namespace TaskManagerPractice.Controllers
 
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("CreateNewTask");
+                return RedirectToAction("EditOrCreateNewTask",i_task);
             }
 
-            _context.Tasks.Add(i_task);
+            if (i_task.Id == 0)
+            {
+                _context.Tasks.Add(i_task);
+            }
+            else
+            {
+                _context.Tasks.Update(i_task);
+            }
             _context.SaveChanges();
             return RedirectToAction("MyTasks");
         }

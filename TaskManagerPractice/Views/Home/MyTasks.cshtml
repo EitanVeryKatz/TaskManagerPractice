@@ -51,6 +51,10 @@
                         <input type="hidden" name="Id" value="@task.Id" />
                         <button type="submit" class="btn btn-primary">Delete task</button>
                     </form>
+                        <form asp-action="EditOrCreateNewTask" method="post">
+                            <input type="hidden" name="Id" value="@task.Id" />
+                            <button type="submit" class="btn btn-primary">Edit task</button>
+                        </form>
                 </td>
                 
             </tr>
@@ -59,6 +63,6 @@
         </tbody>
     </table>
     <a asp-action="ClearAllTasks" class="btn btn-secondary">ClearAllTasks</a>
-    <a asp-action="CreateNewTask" class="btn btn-secondary">New Task</a>
+    <a asp-action="EditOrCreateNewTask" class="btn btn-secondary">New Task</a>
 </div>
 
