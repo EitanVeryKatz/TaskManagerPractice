@@ -8,7 +8,9 @@ namespace TaskManagerPractice.Models
 
         [Required]
         public string TaskName { get; set; }
-        public string TaskDescription { get; set; }
+
+
+        public string? TaskDescription { get; set; } = "";
 
         [Required]
         public DateOnly DeadlineDate { get; set; }

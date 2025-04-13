@@ -42,7 +42,12 @@ namespace TaskManagerPractice.Controllers
         [HttpPost]
         public IActionResult CreateNewTaskFormSubmit(TaskItem i_task) 
         {
-            if(!ModelState.IsValid)
+            if (string.IsNullOrWhiteSpace(i_task.TaskDescription))
+            {
+                i_task.TaskDescription = "";
+            }
+
+            if (!ModelState.IsValid)
             {
                 return RedirectToAction("CreateNewTask");
             }
