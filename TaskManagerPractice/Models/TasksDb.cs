@@ -10,6 +10,8 @@ namespace TaskManagerPractice.Models
         }
 
         public DbSet<TaskItem> Tasks { get; set; }
+        public DbSet<TaskItem> CompletedTasks { get; set; }
+        public DbSet<TaskItem> NotCompletedTasks { get; set; }
 
     }
 }

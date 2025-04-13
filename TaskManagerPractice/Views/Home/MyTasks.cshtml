@@ -9,12 +9,18 @@
     <h1 class="display-4">My Tasks</h1>
 
     <div class="btn-group mb-3" role="group">
-        <a asp-action="MyTasks" asp-route-SortBy="ByOrder" class="btn btn-outline-primary">Sort By Order of Creation</a>
-        <a asp-action="MyTasks" asp-route-SortBy="ByDueDate" class="btn btn-outline-primary">Sort By Due Date</a>
-        <a asp-action="MyTasks" asp-route-SortBy="ByComplition" class="btn btn-outline-primary">Sort By Status</a>
-        <a asp-action="MyTasks" asp-route-SortBy="ByName" class="btn btn-outline-primary">Sort By Name</a>
+        <a asp-action="MyTasks" asp-route-SortBy="ByOrder" asp-route-Show="@Context.Request.Query["Show"]" class="btn btn-outline-primary">Sort By Order of Creation</a>
+        <a asp-action="MyTasks" asp-route-SortBy="ByDueDate" asp-route-Show="@Context.Request.Query["Show"]" class="btn btn-outline-primary">Sort By Due Date</a>
+        <a asp-action="MyTasks" asp-route-SortBy="ByComplition" asp-route-Show="@Context.Request.Query["Show"]" class="btn btn-outline-primary">Sort By Status</a>
+        <a asp-action="MyTasks" asp-route-SortBy="ByName" asp-route-Show="@Context.Request.Query["Show"]" class="btn btn-outline-primary">Sort By Name</a>
     </div>
+    <div class=" btn-group mb-3" role="group">
+        <a asp-action="MyTasks" asp-route-Show="All" asp-route-SortBy="@Context.Request.Query["sortBy"]" class="btn btn-outline-primary">Show All Tasks</a>
+        <a asp-action="MyTasks" asp-route-Show="Completed" asp-route-SortBy="@Context.Request.Query["sortBy"]" class="btn btn-outline-primary">Hide Not Completed Tasks</a>
+        <a asp-action="MyTasks" asp-route-Show="NonCompleted" asp-route-SortBy="@Context.Request.Query["sortBy"]" class="btn btn-outline-primary">Hide Completed Tasks</a>
 
+
+    </div>
     <table class="table">
         <thead>
             <tr>

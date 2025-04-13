@@ -24,9 +24,22 @@ namespace TaskManagerPractice.Controllers
             return View();
         }
 
-        public IActionResult MyTasks(string SortBy)
+        public IActionResult MyTasks(string SortBy, string Show)
         {
-            List<TaskItem> AllTasks = _context.Tasks.ToList();
+            List<TaskItem> AllTasks= _context.Tasks.ToList(); ;
+
+            switch (Show)
+            {
+                case "Completed":
+                    AllTasks = AllTasks.Where(task => task.WasCompleted == true).ToList();
+                    break;
+                case "NonCompleted":
+                    AllTasks = AllTasks.Where(task=>task.WasCompleted==false).ToList(); 
+                    break;
+                
+            }
+
+
             switch (SortBy)
             {
                 case "ByDueDate":
@@ -67,6 +80,7 @@ namespace TaskManagerPractice.Controllers
             {
                 return RedirectToAction("CreateNewTask");
             }
+
             _context.Tasks.Add(i_task);
             _context.SaveChanges();
             return RedirectToAction("MyTasks");
@@ -84,8 +98,9 @@ namespace TaskManagerPractice.Controllers
 
         public IActionResult DeleteTask(int Id)
         {
-            var task = _context.Tasks.FirstOrDefault(task=>task.Id == Id);
+            var task = _context.Tasks.FirstOrDefault(task => task.Id == Id);
             _context.Tasks.Remove(task);
+
             _context.SaveChanges();
             return RedirectToAction("MyTasks");
         }
