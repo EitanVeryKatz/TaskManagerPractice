@@ -8,13 +8,22 @@
 
 <div class="text-center">
     <h1 class="display-4">Create new task</h1>
+
     <form asp-action="CreateNewTaskFormSubmit" method="post">
+        <div>
         <label>Task Name</label>
         <input  asp-for="TaskName" class=" form-text" placeholder="Task Name">
+        </div>
+
+        <div>
         <label>Task Description</label>
         <textarea asp-for="TaskDescription" class="form-text" placeholder="Task Description..."></textarea>
+        </div>
+
+        <div>
         <label>Date for Complition</label>
         <input asp-for="DeadlineDate" type ="date" />
+        </div>
         <button type ="submit" class=" btn btn-secondary">Create Task</button>
     </form>
 </div>

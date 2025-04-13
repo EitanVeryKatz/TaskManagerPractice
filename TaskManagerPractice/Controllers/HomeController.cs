@@ -42,6 +42,10 @@ namespace TaskManagerPractice.Controllers
         [HttpPost]
         public IActionResult CreateNewTaskFormSubmit(TaskItem i_task) 
         {
+            if(!ModelState.IsValid)
+            {
+                return RedirectToAction("CreateNewTask");
+            }
             _context.Tasks.Add(i_task);
             _context.SaveChanges();
             return RedirectToAction("MyTasks");
