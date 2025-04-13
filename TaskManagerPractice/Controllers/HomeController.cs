@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using TaskManagerPractice.Models;
 
 
@@ -23,9 +24,24 @@ namespace TaskManagerPractice.Controllers
             return View();
         }
 
-        public IActionResult MyTasks()
+        public IActionResult MyTasks(string SortBy)
         {
             List<TaskItem> AllTasks = _context.Tasks.ToList();
+            switch (SortBy)
+            {
+                case "ByDueDate":
+                  AllTasks = AllTasks.OrderBy(task => task.DeadlineDate).ToList();
+                    break;
+                case "ByOrder":
+                    AllTasks = AllTasks.OrderBy(task => task.Id).ToList();
+                    break;
+                case "ByComplition":
+                    AllTasks = AllTasks.OrderBy(task => task.WasCompleted).ToList();
+                    break;
+                case "ByName":
+                    AllTasks = AllTasks.OrderBy(task => task.TaskName).ToList();
+                    break;
+            }
             return View(AllTasks);
         }
 
@@ -82,6 +98,8 @@ namespace TaskManagerPractice.Controllers
             _context.SaveChanges();
             return RedirectToAction("MyTasks");
         }
+
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

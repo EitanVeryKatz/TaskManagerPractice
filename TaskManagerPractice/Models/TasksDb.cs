@@ -10,5 +10,6 @@ namespace TaskManagerPractice.Models
         }
 
         public DbSet<TaskItem> Tasks { get; set; }
+
     }
 }

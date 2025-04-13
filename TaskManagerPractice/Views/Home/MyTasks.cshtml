@@ -7,6 +7,14 @@
 
 <div class="text-center">
     <h1 class="display-4">My Tasks</h1>
+
+    <div class="btn-group mb-3" role="group">
+        <a asp-action="MyTasks" asp-route-SortBy="ByOrder" class="btn btn-outline-primary">Sort By Order of Creation</a>
+        <a asp-action="MyTasks" asp-route-SortBy="ByDueDate" class="btn btn-outline-primary">Sort By Due Date</a>
+        <a asp-action="MyTasks" asp-route-SortBy="ByComplition" class="btn btn-outline-primary">Sort By Status</a>
+        <a asp-action="MyTasks" asp-route-SortBy="ByName" class="btn btn-outline-primary">Sort By Name</a>
+    </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -24,10 +32,11 @@
                 <td>@task.TaskName</td>
                 <td>@task.TaskDescription</td>
                 <td>@task.DeadlineDate.ToShortDateString()</td>
-                <td>@task.WasCompleted 
+                <td>
+                        
                     <form asp-action="ChangeTaskComplitionStatus" method="post">
                             <input type="hidden" name="Id" value="@task.Id" />
-                            <input type ="checkbox" onchange="this.form.submit()" name="Was completed" />
+                            <button type="submit" class="btn btn-primary">@task.WasCompleted</button>
 
                     </form>
                 </td>
